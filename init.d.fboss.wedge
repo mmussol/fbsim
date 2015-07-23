@@ -1,0 +1,20 @@
+#! /bin/sh
+# /etc/init.d/fboss
+#
+
+case "$1" in
+  start)
+    echo "Starting script fboss"
+    screen -S mininet -dm python /root/fboss_wedge_setup.py DUMMY_ROW_ID DUMMY_WEDGE_ID DUMMY_FABRIC_COUNT
+    ;;
+  stop)
+    echo "Stopping script fboss"
+    python /root/fboss_wedge_teardown.py
+    ;;
+  *)
+    echo "Usage: /etc/init.d/fboss {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
