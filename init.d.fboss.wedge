@@ -6,6 +6,8 @@ case "$1" in
   start)
     echo "Starting script fboss"
     screen -S mininet -dm python /root/fboss_wedge_setup.py DUMMY_ROW_ID DUMMY_WEDGE_ID DUMMY_FABRIC_COUNT
+    export LD_LIBRARY_PATH=/root/fbbin
+    /root/fbbin/sim_agent --config DUMMY_FBOSS_JSON -port DUMMY_FBOSS_PORT &
     ;;
   stop)
     echo "Stopping script fboss"
