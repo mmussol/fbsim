@@ -95,6 +95,8 @@ def installWedge(rowID, startWedgeID, wedgeCount, fabricCount):
             syscmd("chmod +x %s" % ovsup)
     
 
+    syscmd("echo 'iptables -t nat -A POSTROUTING -j MASQUERADE' >> start.sh")
+
     # The first wedge containter in the system will set up GRE tunnels to fabric(s)
     wedgeID = startWedgeID 
     lxcName = "lxc-wedge%s" % wedgeID
